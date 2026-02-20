@@ -3,7 +3,7 @@ import { Providers } from '../../providers';
 import './admin.css'; // optional: separate styling
 
 export const metadata: Metadata = {
-  title: 'Admin Panel | Rupali Travel Rentals',
+  title: 'Admin Panel | Cloudhills Rentals',
   description: 'Manage cars, bookings, and users securely.',
   robots: {
     index: false,
