@@ -70,8 +70,8 @@ export default function FAQPage() {
                 Our customer support team is here to help you 24/7
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a href="tel:+918415038275" className="btn-primary">
-                  Call Us: +91 8415038275
+                <a href="tel:+917085901345" className="btn-primary">
+                  Call Us: +91 7085901345
                 </a>
                <Link href="/contact" className="btn-outline">
                   Contact Us

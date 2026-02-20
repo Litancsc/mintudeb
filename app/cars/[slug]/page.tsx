@@ -183,7 +183,7 @@ export default async function CarDetailPage({ params }: PageProps) {
                 <div className="bg-gold-light p-6 rounded-xl mb-6">
                   <div className="flex items-center space-x-4">
                     <a
-                      href={`https://api.whatsapp.com/send?phone=8415038275&text=${encodeURIComponent(
+                      href={`https://api.whatsapp.com/send?phone=7085901345&text=${encodeURIComponent(
                         `Hi, I'm interested in renting the ${car.name} for a day. Is it available?`
                       )}`}
                       target="_blank"
@@ -195,11 +195,11 @@ export default async function CarDetailPage({ params }: PageProps) {
                     </a>
 
                     <a
-                      href="tel:+918415038275"
+                      href="tel:+917085901345"
                       className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-2 py-2 rounded-full transition"
                     >
                       <FaPhone size={18} />
-                      <span>8415038275</span>
+                      <span>7085901345</span>
                     </a>
                   </div>
                 </div>

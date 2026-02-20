@@ -32,10 +32,10 @@ async function getPage(service: string, location: string) {
   // For now we mock the page data
   return {
     title: `${service} in ${location}`,
-    excerpt: `Looking for reliable ${service.toLowerCase()} in ${location}? Rupali Travel Agency offers safe, affordable car rental with driver.`,
+    excerpt: `Looking for reliable ${service.toLowerCase()} in ${location}? Cloudhills offers safe, affordable car rental with driver.`,
     content: `<section class="space-y-6">
       <p>Looking for a reliable <strong>${service.toLowerCase()} in ${location} with driver</strong>?<br/>
-      <strong>Rupali Travel Agency</strong> provides safe, comfortable, and affordable car hire services for local travel and outstation trips.</p>
+      <strong>Cloudhills</strong> provides safe, comfortable, and affordable car hire services for local travel and outstation trips.</p>
       <div class="bg-primary/10 p-6 rounded-lg">
         <h2 class="text-2xl font-bold text-primary mb-3">✈️ ${location} Airport ${service}</h2>
         <p>Need pickup or drop at International Airport? Book our airport ${service.toLowerCase()} with driver for smooth and on-time service.</p>
@@ -57,7 +57,7 @@ async function getPage(service: string, location: string) {
         </ul>
       </div>
       <div>
-        <h2 class="text-2xl font-bold text-primary mb-3">⭐ Why Choose Rupali Travel Agency?</h2>
+        <h2 class="text-2xl font-bold text-primary mb-3">⭐ Why Choose Cloudhills?</h2>
         <ul class="list-disc pl-6 space-y-1">
           <li>Experienced drivers</li>
           <li>Clean & well-maintained vehicles</li>
@@ -66,7 +66,7 @@ async function getPage(service: string, location: string) {
       </div>
       <p>📞 Book your ${service.toLowerCase()} today at <strong>9865256480</strong></p>
     </section>`,
-    author: "Rupali Travel Agency",
+    author: "Cloudhills",
     publishedAt: new Date().toISOString(),
     featuredImage: "", // Empty to trigger default hero
   } as PageData;
@@ -165,7 +165,7 @@ export default async function ServiceLocationPage({ params }: PageProps) {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/918415038275"
+        href="https://wa.me/917085901345"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50"

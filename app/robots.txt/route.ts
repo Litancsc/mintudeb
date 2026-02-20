@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getSiteUrl } from '@/lib/site';
 
 export async function GET() {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getSiteUrl().replace(/\/$/, '');
 
   const robotsTxt = `# Robots.txt for ${siteUrl}
 

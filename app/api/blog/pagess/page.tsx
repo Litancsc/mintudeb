@@ -10,7 +10,7 @@ interface PageProps {
 // Fetch page data
 async function getPage(slug: string) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
     const res = await fetch(`${baseUrl}/api/page?slug=${slug}&published=true`, {
       cache: 'no-store', // Always fetch fresh data
     });

@@ -12,7 +12,7 @@ export async function GET() {
     
     if (!settings) {
       settings = await SEOSettings.create({
-        siteName: 'Rupali travel agency in Shillong',
+        siteName: 'Cloudhills in Shillong',
         siteDescription: 'Taxi & Premium Car Rental Service - Affordable & Luxury Cars',
         siteKeywords: 'car rental, taxi service, shillong, meghalaya',
         defaultOgImage: '/images/og-image.jpg',

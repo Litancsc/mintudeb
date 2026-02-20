@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-//require('dotenv').config();
-require('dotenv').config({ path: '.env.local' });
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.local' });
 // Simple schema definitions for seeding
 const UserSchema = new mongoose.Schema({
   email: String,
@@ -35,17 +36,16 @@ const Car = mongoose.models.Car || mongoose.model('Car', CarSchema);
 
 async function seed() {
   try {
-   await mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+    await mongoose.connect(process.env.MONGODB_URI);
+    const ADMIN_EMAIL = process.env.ADMIN_EMAIL.toLowerCase();
+    const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
     // Create admin user
-    const adminExists = await User.findOne({ email: 'admin@drivenow.com' });
+    const adminExists = await User.findOne({ email: ADMIN_EMAIL });
     if (!adminExists) {
-      const hashedPassword = await bcrypt.hash('Admin@123', 10);
+      const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 10);
       await User.create({
-        email: 'admin@drivenow.com',
+        email: ADMIN_EMAIL,
         password: hashedPassword,
         name: 'Admin User',
         role: 'admin',
@@ -185,7 +185,7 @@ async function seed() {
     console.log('\n📝 Admin Credentials:');
     console.log('   Email: admin@drivenow.com');
     console.log('   Password: Admin@123');
-    
+
     await mongoose.disconnect();
     process.exit(0);
   } catch (error) {

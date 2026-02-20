@@ -10,7 +10,7 @@ import NotificationBanner from '@/components/NotificationBanner';
 
 export const metadata = {
   title: 'Home',
-  description: 'Reliable car rental service in Shillong. Book affordable taxis, cabs, and luxury cars for airport transfers, sightseeing, and outstation trips. 24/7 service with professional drivers. Call 8415038275 for instant booking..',
+  description: 'Reliable car rental service in Shillong. Book affordable taxis, cabs, and luxury cars for airport transfers, sightseeing, and outstation trips. 24/7 service with professional drivers. Call 7085901345 for instant booking..',
   alternates: { canonical: '/' }, // 👈 correct canonical for homepage
 };
 export default function Home() {

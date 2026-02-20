@@ -36,7 +36,7 @@ export async function getSEOSettings(): Promise<SEOSettingsType> {
     if (!settings) {
       // Create default settings if none exist
       const newSettings = await SEOSettings.create({
-        siteName: process.env.NEXT_PUBLIC_SITE_NAME || 'Rupali travel agency in Shillong',
+        siteName: process.env.NEXT_PUBLIC_SITE_NAME || 'CloudHills agency in Shillong',
         siteDescription: 'Taxi & Premium Car Rental Service - Affordable & Luxury Cars',
         siteKeywords: 'car rental, taxi service, shillong, meghalaya',
         defaultOgImage: '/images/og-image.jpg',
@@ -53,7 +53,7 @@ export async function getSEOSettings(): Promise<SEOSettingsType> {
     console.error('Error fetching SEO settings:', error);
     // Return default values if DB fetch fails
     return {
-      siteName: process.env.NEXT_PUBLIC_SITE_NAME || 'Rupali travel agency in Shillong',
+      siteName: process.env.NEXT_PUBLIC_SITE_NAME || 'CloudHills agency in Shillong',
       siteDescription: 'Taxi & Premium Car Rental Service - Affordable & Luxury Cars',
       siteKeywords: 'car rental, taxi service, shillong, meghalaya',
       defaultOgImage: '/images/og-image.jpg',
@@ -89,7 +89,7 @@ export interface SEOData {
 export async function generateMetadata(seo: SEOData) {
   const siteUrl = getSiteUrl();
   const settings = await getSEOSettings();
-  const siteName = settings.siteName || 'Rupali travel agency in Shillong';
+  const siteName = settings.siteName || 'cloudhills';
 
   return {
     title: seo.title,
@@ -163,17 +163,17 @@ export async function generateLocalBusinessSchema() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': `${siteUrl}/#localbusiness`,
-    name: settings.siteName || 'Rupali travel agency in Shillong',
+    name: settings.siteName || 'CloudHills agency in Shillong',
     description: settings.siteDescription || 'Taxi & Premium Car Rental Service - Affordable & Luxury Cars',
     url: siteUrl,
-    telephone: '+91 8415038275',
+    telephone: '+91 70859 01345',
     priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Milan Compound, Upper Mawprem',
+      streetAddress: 'Riti Complex, opposite Municipal Market, Laban',
       addressLocality: 'Shillong, Meghalaya',
       addressRegion: 'NE',
-      postalCode: '793002',
+      postalCode: '793004',
       addressCountry: 'IN',
     },
     geo: {
@@ -196,9 +196,10 @@ export async function generateLocalBusinessSchema() {
       },
     ],
     sameAs: [
-      'https://www.facebook.com/people/Rupali-Travel-Agency-in-Shillong/61581926342128/',
+      'https://www.facebook.com/share/1AnXnYFKYf/',
       'https://www.instagram.com/',
-      'https://twitter.com/',
+      'https://www.threads.com/@mintudeb8',
+      'https://youtube.com/@mintudeb5211?si=R_KhAHNMgfHgu1pK'
     ],
   };
 }

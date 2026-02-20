@@ -5,9 +5,9 @@ import { generateMetadata as genMeta } from '@/lib/seo';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 
 export const metadata = genMeta({
-  title: 'Contact Us - Rupali Travel Agency In Shillong',
-  description: 'Get in touch with Rupali Travel Agency In Shillong. We\'re here to help with bookings, inquiries, and support. Call, email, or visit us today.',
-  keywords: ['contact Rupali Travel Agency In Shillong', 'car rental support', 'booking inquiries', 'customer service'],
+  title: 'Contact Us - Cloudhills In Shillong',
+  description: 'Get in touch with Cloudhills In Shillong. We\'re here to help with bookings, inquiries, and support. Call, email, or visit us today.',
+  keywords: ['contact Cloudhills In Shillong', 'car rental support', 'booking inquiries', 'customer service'],
 });
 
 export default function ContactPage() {
@@ -20,7 +20,7 @@ export default function ContactPage() {
           <div className="container-custom">
             <h1 className="heading-lg mb-4">Contact Us</h1>
             <p className="text-xl text-gray-200 max-w-3xl">
-              Have questions? We're here to help. Reach out to us anytime!
+              Have questions? We re here to help. Reach out to us anytime!
             </p>
           </div>
         </section>
@@ -33,7 +33,7 @@ export default function ContactPage() {
               <div>
                 <h2 className="heading-md mb-6">Get In Touch</h2>
                 <p className="text-gray-700 mb-8">
-                  Whether you have a question about our vehicles, pricing, bookings, or anything else, 
+                  Whether you have a question about our vehicles, pricing, bookings, or anything else,
                   our team is ready to answer all your questions.
                 </p>
 
@@ -45,9 +45,15 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-primary mb-1">Address</h3>
                       <p className="text-gray-600">
-                        Milan Compound, Upper Mawprem <br />
-                        Garikhana, Shillong<br />
-                        Meghalaya 793002
+                        Riti Complex, opposite Municipal Market,<br /> Laban, Shillong,<br /> Meghalaya 793004
+
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-primary mb-1">Address</h3>
+                      <p className="text-gray-600">
+                        South Anandanagar,<br /> Srinagar, West,<br /> Tripura 799004
+                        M-9612011797
                       </p>
                     </div>
                   </div>
@@ -59,8 +65,8 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-primary mb-1">Phone</h3>
                       <p className="text-gray-600">
-                        Main: <a href="tel:8415038275" className="hover:text-gold">+91 84150 38275</a><br />
-                        Toll Free: <a href="tel:+8415038275" className="hover:text-gold">+91 84150 38275</a>
+                        Main: <a href="tel:7085901345" className="hover:text-gold">+91 70859 01345</a><br />
+                        Toll Free: <a href="tel:+7085901345" className="hover:text-gold">+91 70859 01345</a>
                       </p>
                     </div>
                   </div>
@@ -72,8 +78,8 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-primary mb-1">Email</h3>
                       <p className="text-gray-600">
-                        General: <a href="mailto:rupalitravelagency@gmail.com" className="hover:text-gold">rupalitravelagency@gmail.com</a><br />
-                        Support: <a href="mailto:rupalitravelagency@gmail.com" className="hover:text-gold">rupalitravelagency@gmail.com</a>
+                        General: <a href="mailto:Litanpaul.csc@gmail.com" className="hover:text-gold">Litanpaul.csc@gmail.com</a><br />
+                        Support: <a href="mailto:Litanpaul.csc@gmail.com" className="hover:text-gold">Litanpaul.csc@gmail.com</a>
                       </p>
                     </div>
                   </div>
@@ -93,9 +99,10 @@ export default function ContactPage() {
                 </div>
 
                 {/* Map */}
+                {/* Map */}
                 <div className="mt-8 rounded-xl overflow-hidden shadow-lg h-64">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.7779859688703!2d91.8699919!3d25.579052100000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37507f2c9f17d985%3A0x60b0bea452f226dc!2sRupali%20travel%20agency%20in%20Shillong!5e0!3m2!1sen!2sin!4v1761295819756!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.077974232131!2d91.8765355!3d25.5639847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37507f39f3e7baa5%3A0x7ae92a23ca682b56!2sMiles%20For%20Smiles%20Tours%20%26%20Travels!5e0!3m2!1sen!2sin!4v1708189568132!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -104,6 +111,7 @@ export default function ContactPage() {
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
+
               </div>
 
               {/* Contact Form */}

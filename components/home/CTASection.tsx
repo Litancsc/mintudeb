@@ -18,11 +18,11 @@ const CTASection = () => {
       <div className="container-custom relative z-10">
         <div className="max-w-3xl">
           <h2 className="heading-lg text-white mb-6">
-            Ready to Hit the Road?
+            Explore Meghalaya in Style with CloudHills
           </h2>
           <p className="text-xl text-gray-200 mb-8">
-            Join thousands of satisfied customers who trust DriveNow Rentals for their transportation needs. 
-            Book now and experience premium car rental service.
+            Discover the beauty of North East India with our premium car rental services.
+            Reliable rides, professional drivers, and unforgettable journeys—Book your adventure today!
           </p>
 
           <div className="flex flex-wrap gap-4 mb-8">
@@ -37,7 +37,7 @@ const CTASection = () => {
           {/* Contact Info */}
           <div className="flex flex-wrap gap-6">
             <a
-              href="tel:+12345678900"
+              href="tel:+917085901345"
               className="flex items-center space-x-3 text-white hover:text-gold transition-colors"
             >
               <div className="bg-gold p-3 rounded-full">
@@ -45,12 +45,12 @@ const CTASection = () => {
               </div>
               <div>
                 <div className="text-sm text-gray-300">Call Us Now</div>
-                <div className="font-semibold text-lg">+91 84150 38275</div>
+                <div className="font-semibold text-lg">+91 70859 01345</div>
               </div>
             </a>
 
             <a
-              href="mailto:rupalitravelagency@gmail.com
+              href="mailto:litanpaulcsc@gmail.com
 "
               className="flex items-center space-x-3 text-white hover:text-gold transition-colors"
             >
@@ -59,8 +59,8 @@ const CTASection = () => {
               </div>
               <div>
                 <div className="text-sm text-gray-300">Email Us</div>
-                <div className="font-semibold text-lg">rupalitravelagency@gmail.com
-</div>
+                <div className="font-semibold text-lg">Litanpaulcsc@gmail.com
+                </div>
               </div>
             </a>
           </div>

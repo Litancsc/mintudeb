@@ -84,7 +84,7 @@ CarSchema.pre<ICar>('save', function () {
   }
 
   if (!this.metaTitle) {
-    this.metaTitle = `${this.name} - Rent for $${this.pricePerDay}/day | Rupali travel agency in Shillong`;
+    this.metaTitle = `${this.name} - Rent for $${this.pricePerDay}/day | cloudhills.in`;
   }
 
   if (!this.metaDescription) {

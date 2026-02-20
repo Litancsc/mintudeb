@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: BlogPostParams) {
 
   // Valid post metadata
   return genMeta({
-    title: post.metaTitle || `${post.title} | Rupali Travel Agency`,
+    title: post.metaTitle || `${post.title} | Cloudhills`,
     description: post.metaDescription || post.excerpt,
     keywords: post.metaKeywords ? [post.metaKeywords] : undefined,
     ogImage: post.featuredImage,
@@ -112,7 +112,7 @@ export default async function BlogPostPage({ params }: BlogPostParams) {
     author: { '@type': 'Person', name: post.author },
     publisher: {
       '@type': 'Organization',
-      name: 'Rupali Travel Agency',
+      name: 'Cloudhills',
       logo: { '@type': 'ImageObject', url: `${siteUrl}/logo.png` },
     },
   };

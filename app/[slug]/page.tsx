@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Footer from '@/components/layout/Footer';
 import Navbar from '@/components/layout/Navbar';
+import TourDetailPage from '@/components/TourDetailPage';
 
 interface PageProps {
   params: Promise<{
@@ -9,21 +10,42 @@ interface PageProps {
   }>;
 }
 
+interface Page {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  featuredImage?: string;
+  isPublished: boolean;
+  publishedAt?: string;
+  author?: string;
+  type?: 'normal' | 'tour';
+  price?: number;
+  days?: number;
+  nights?: number;
+  locations?: number;
+  highlights?: string[];
+  isPopular?: boolean;
+  available?: boolean;
+  rating?: number;
+  totalReviews?: number;
+  inclusions?: string[];
+}
+
 // Fetch page data
-async function getPage(slug: string) {
+async function getPage(slug: string): Promise<Page | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
     const res = await fetch(
       `${baseUrl}/api/pages?slug=${slug}&published=true`,
-      {
-        cache: 'no-store', // Always fetch fresh data
-      }
-    ); 
+      { cache: 'no-store' }
+    );
 
-    if (!res.ok) {
-      return null;
-    }
-
+    if (!res.ok) return null;
     return await res.json();
   } catch (error) {
     console.error('Error fetching page:', error);
@@ -32,18 +54,11 @@ async function getPage(slug: string) {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata(
-  { params }: PageProps
-): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-
   const page = await getPage(slug);
 
-  if (!page) {
-    return {
-      title: 'Page Not Found',
-    };
-  }
+  if (!page) return { title: 'Page Not Found' };
 
   return {
     title: page.metaTitle || page.title,
@@ -59,80 +74,79 @@ export async function generateMetadata(
 
 export default async function DynamicPage({ params }: PageProps) {
   const { slug } = await params;
-
   const page = await getPage(slug);
 
-  if (!page || !page.isPublished) {
-    notFound();
-  }
-  return (
+  if (!page || !page.isPublished) notFound();
 
-  <>
-  <Navbar/> 
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      {page.featuredImage && (
-        <div
-          className="relative h-96 bg-cover bg-center"
-          style={{ backgroundImage: `url(${page.featuredImage})` }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="text-center text-white">
-              <h1 className="text-5xl font-bold mb-4 mt-8">{page.title}</h1>
-              {page.excerpt && (
-                <p className="text-xl max-w-2xl mx-auto">{page.excerpt}</p>
-              )}
+  // ─── TOUR PACKAGE PAGE ──────────────────────────────────────────────────
+  if (page.type === 'tour') {
+    return <TourDetailPage page={page} />;
+  }
+
+  // ─── NORMAL PAGE (unchanged) ────────────────────────────────────────────
+  return (
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gray-50">
+        {page.featuredImage && (
+          <div
+            className="relative h-96 bg-cover bg-center"
+            style={{ backgroundImage: `url(${page.featuredImage})` }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <div className="text-center text-white">
+                <h1 className="text-5xl font-bold mb-4 mt-8">{page.title}</h1>
+                {page.excerpt && (
+                  <p className="text-xl max-w-2xl mx-auto">{page.excerpt}</p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Content Section */}
-      <div className="container-custom py-16">
-        <div className="max-w-4xl mx-auto">
-          {!page.featuredImage && (
-            <h1 className="text-4xl font-bold text-primary mb-8">{page.title}</h1>
-          )}
-
-          {/* Page Metadata */}
-          <div className="flex items-center gap-4 text-sm text-gray-600 mb-8 pb-4 border-b">
-            {page.author && <span>By {page.author}</span>}
-            {page.publishedAt && (
-              <>
-                <span>•</span>
-                <time dateTime={page.publishedAt}>
-                  {new Date(page.publishedAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-              </>
+        <div className="container-custom py-16">
+          <div className="max-w-4xl mx-auto">
+            {!page.featuredImage && (
+              <h1 className="text-4xl font-bold text-primary mb-8">{page.title}</h1>
             )}
-          </div>
 
-          {/* Page Content - Rich Text */}
-          <div
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: page.content }}
-          />
+            <div className="flex items-center gap-4 text-sm text-gray-600 mb-8 pb-4 border-b">
+              {page.author && <span>By {page.author}</span>}
+              {page.publishedAt && (
+                <>
+                  <span>•</span>
+                  <time dateTime={page.publishedAt}>
+                    {new Date(page.publishedAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </>
+              )}
+            </div>
+
+            <div
+              className="prose prose-lg max-w-none"
+              dangerouslySetInnerHTML={{ __html: page.content }}
+            />
+          </div>
         </div>
       </div>
-      </div>
-      
+
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/918415038275"
+        href="https://wa.me/917085901345"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50"
       >
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12.04 2C6.48 2 2 6.5 2 12.04c0 2.13.56 4.11 1.54 5.84L2 22l4.31-1.42a9.957 9.957 0 005.73 1.65C17.56 22.23 22 17.76 22 12.04 22 6.48 17.52 2 12.04 2zm0 18.05a8.014 8.014 0 01-4.36-1.27l-.31-.19-2.57.84.88-2.5-.21-.34A7.98 7.98 0 014.05 12c0-4.42 3.59-8.02 8-8.02 4.41 0 8 3.6 8 8.02 0 4.41-3.6 8-8 8zm3.71-5.89l-.44-2.09c-.06-.27-.31-.49-.59-.49l-1.66.03c-.28 0-.53.21-.58.49l-.22 1.25c-.06.34-.36.63-.7.72l-1.38.37c-.35.09-.57.45-.5.8l.28 1.31c.07.35.37.61.73.61h.01c3.05 0 5.53-2.48 5.53-5.53 0-.31-.25-.56-.56-.56z"/>
+          <path d="M12.04 2C6.48 2 2 6.5 2 12.04c0 2.13.56 4.11 1.54 5.84L2 22l4.31-1.42a9.957 9.957 0 005.73 1.65C17.56 22.23 22 17.76 22 12.04 22 6.48 17.52 2 12.04 2zm0 18.05a8.014 8.014 0 01-4.36-1.27l-.31-.19-2.57.84.88-2.5-.21-.34A7.98 7.98 0 014.05 12c0-4.42 3.59-8.02 8-8.02 4.41 0 8 3.6 8 8.02 0 4.41-3.6 8-8 8zm3.71-5.89l-.44-2.09c-.06-.27-.31-.49-.59-.49l-1.66.03c-.28 0-.53.21-.58.49l-.22 1.25c-.06.34-.36.63-.7.72l-1.38.37c-.35.09-.57.45-.5.8l.28 1.31c.07.35.37.61.73.61h.01c3.05 0 5.53-2.48 5.53-5.53 0-.31-.25-.56-.56-.56z" />
         </svg>
       </a>
 
-    <Footer />
+      <Footer />
     </>
   );
 }

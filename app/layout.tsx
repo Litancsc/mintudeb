@@ -5,6 +5,7 @@ import './globals.css';
 import { Providers } from './providers';
 import { getSEOSettings, generateLocalBusinessSchema } from '@/lib/seo';
 
+
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -22,6 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  
 
   console.log( settings.googleSearchConsole);
 
@@ -38,7 +40,9 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: settings.siteKeywords?.split(',').map(k => k.trim()),
 
     verification: {
-      google: settings.googleSearchConsole || undefined,
+       google: settings.googleSearchConsole
+    ?.replace(/.*content="([^"]+)".*/, '$1')
+    ?.trim() || undefined,
     },
 
     openGraph: {

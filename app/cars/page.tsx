@@ -6,7 +6,7 @@ import CarFilters from '@/components/cars/CarFilters';
 import { generateMetadata as genMeta } from '@/lib/seo';
 
 export const metadata = genMeta({
-  title: 'Browse Premium Cars for Rent | Rupali Travel Agency in Shillong',
+  title: 'Browse Premium Cars for Rent | Cloudhills in Shillong',
   description: 'Explore our extensive fleet of rental cars. Economy, luxury, SUVs, sports cars, and more. Find the perfect vehicle for your needs at competitive prices.',
   keywords: ['car rental fleet', 'rent cars online', 'luxury car hire', 'economy car rental', 'SUV rental'],
 });

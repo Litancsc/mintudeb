@@ -34,7 +34,7 @@ interface BlogPostData {
 
 // 🟢 added fallback-safe environment variables
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Rupali Travel Agency in Shillong';
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Cloudhills in Shillong';
 
 // 🟢 changed from `export const metadata = ...` to a function for dynamic environments (Vercel friendly)
 export async function generateMetadata() {
@@ -161,59 +161,68 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                     {posts.map((post: BlogPostData, idx: number) => (
                       <article
                         key={post._id || idx}
-                        className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift"
+                        className={`bg-white rounded-xl shadow-lg overflow-hidden hover-lift group ${idx === 0 ? 'lg:flex lg:items-center' : ''
+                          }`}
                       >
-                        <div className="grid md:grid-cols-3 gap-6">
-                          {/* Featured Image */}
-                          <div className="md:col-span-1 relative h-64 md:h-auto">
-                            <Image
-                              src={post.featuredImage || '/images/default-blog.jpg'}
-                              alt={post.title || 'Blog post'}
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 768px) 100vw, 33vw"
-                            />
+                        {/* Image Section */}
+                        <div
+                          className={`relative overflow-hidden ${idx === 0 ? 'lg:w-1/2 h-80' : 'aspect-video'
+                            }`}
+                        >
+                          <Image
+                            src={post.featuredImage || '/images/default-blog.jpg'}
+                            alt={post.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </div>
+
+                        {/* Content Section */}
+                        <div className={`p-6 ${idx === 0 ? 'lg:w-1/2' : ''}`}>
+
+                          {/* Meta */}
+                          <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
+                            <span className="flex items-center space-x-1">
+                              <FaCalendar className="text-gold" />
+                              <span>{formatDate(post.publishedAt || post.createdAt)}</span>
+                            </span>
+                            <span className="flex items-center space-x-1">
+                              <FaUser className="text-gold" />
+                              <span>{post.author || 'Admin'}</span>
+                            </span>
                           </div>
 
-                          {/* Content */}
-                          <div className="md:col-span-2 p-6">
-                            {/* Meta Info */}
-                            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
-                              <span className="flex items-center space-x-1">
-                                <FaCalendar className="text-gold" />
-                                <span>{formatDate(post.publishedAt || post.createdAt)}</span>
-                              </span>
-                              <span className="flex items-center space-x-1">
-                                <FaUser className="text-gold" />
-                                <span>{post.author || 'Admin'}</span>
-                              </span>
+                          {/* Categories */}
+                          {post.categories && post.categories.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mb-3">
+                              {post.categories.map((cat: string, i: number) => (
+                                <span key={i} className="badge badge-gold text-xs">
+                                  <FaFolder className="inline mr-1" />
+                                  {cat}
+                                </span>
+                              ))}
                             </div>
+                          )}
 
-                            {/* Categories */}
-                            {post.categories && post.categories.length > 0 && (
-                              <div className="flex flex-wrap gap-2 mb-3">
-                                {post.categories.map((cat: string, idx: number) => (
-                                  <span key={idx} className="badge badge-gold text-xs">
-                                    <FaFolder className="inline mr-1" />
-                                    {cat}
-                                  </span>
-                                ))}
-                              </div>
-                            )}
+                          {/* Title */}
+                          <h2 className="text-2xl font-bold text-primary mb-3 hover:text-gold transition-colors">
+                            <Link href={`/blog/${post.slug}`}>
+                              {post.title}
+                            </Link>
+                          </h2>
 
-                            {/* Title */}
-                            <h2 className="text-2xl font-bold text-primary mb-3 hover:text-gold transition-colors">
-                              <Link href={`/blog/${post.slug}`}>
-                                {post.title}
-                              </Link>
-                            </h2>
+                          {/* Excerpt */}
+                          <p className="text-gray-600 mb-4 line-clamp-3">
+                            {post.excerpt || 'Read more about this topic...'}
+                          </p>
 
-                            {/* Excerpt */}
-                            <p className="text-gray-600 mb-4 line-clamp-3">
-                              {post.excerpt || 'Read more about this topic...'}
-                            </p>
+                          {/* Bottom */}
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-gray-500">
+                              👁 {post.views || 0} views
+                            </span>
 
-                            {/* Read More */}
                             <Link
                               href={`/blog/${post.slug}`}
                               className="inline-flex items-center space-x-2 text-gold hover:text-gold-dark font-semibold"
@@ -222,6 +231,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                               <FaArrowRight />
                             </Link>
                           </div>
+
                         </div>
                       </article>
                     ))}

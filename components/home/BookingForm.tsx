@@ -44,27 +44,39 @@ const BookingForm = () => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
+    <div className="w-full max-w-lg mx-auto bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-6 sm:p-8 border border-gray-100">
     
-    <div className="bg-white rounded-2xl shadow-2xl p-8">
-      <h2 className="text-2xl font-bold text-primary mb-6">Book Your Ride</h2>
-       <a
-      href={`https://api.whatsapp.com/send?phone=8415038275&text=${encodeURIComponent(
-        `Hi, I'm interested in renting the  for day. Is it available?`
-      )}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full transition"
-      title="Chat on WhatsApp"
-    >
-      <FaWhatsapp size={20} />
-      <span>WhatsApp</span>
-    </a>
-    
-      <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+            Book Your Ride
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">
+            Find the perfect car for your journey
+          </p>
+        </div>
+
+        <a
+          href={`https://api.whatsapp.com/send?phone=8415038275&text=${encodeURIComponent(
+            `Hi, I'm interested in renting a car. Is it available?`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition"
+          title="Chat on WhatsApp"
+        >
+          <FaWhatsapp size={20} />
+        </a>
+      </div>
+
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="space-y-5">
+      
         {/* Location */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            <FaMapMarkerAlt className="inline mr-2 text-gold" />
+          <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+            <FaMapMarkerAlt className="mr-2 text-yellow-500" />
             Pick-up Location
           </label>
           <input
@@ -73,16 +85,16 @@ const BookingForm = () => {
             placeholder="Enter city or airport"
             value={formData.location}
             onChange={handleChange}
-            className="input-field"
+            className="w-full h-12 px-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
             required
           />
         </div>
 
         {/* Dates */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <FaCalendarAlt className="inline mr-2 text-gold" />
+            <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+              <FaCalendarAlt className="mr-2 text-yellow-500" />
               Pick-up Date
             </label>
             <input
@@ -91,13 +103,14 @@ const BookingForm = () => {
               value={formData.pickupDate}
               onChange={handleChange}
               min={today}
-              className="input-field"
+              className="w-full h-12 px-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
               required
             />
           </div>
+
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <FaCalendarAlt className="inline mr-2 text-gold" />
+            <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+              <FaCalendarAlt className="mr-2 text-yellow-500" />
               Return Date
             </label>
             <input
@@ -106,7 +119,7 @@ const BookingForm = () => {
               value={formData.returnDate}
               onChange={handleChange}
               min={formData.pickupDate || today}
-              className="input-field"
+              className="w-full h-12 px-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
               required
             />
           </div>
@@ -114,15 +127,15 @@ const BookingForm = () => {
 
         {/* Time */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            <FaClock className="inline mr-2 text-gold" />
+          <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
+            <FaClock className="mr-2 text-yellow-500" />
             Pick-up Time
           </label>
           <select
             name="pickupTime"
             value={formData.pickupTime}
             onChange={handleChange}
-            className="input-field"
+            className="w-full h-12 px-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition bg-white"
           >
             {Array.from({ length: 24 }, (_, i) => {
               const hour = i.toString().padStart(2, '0');
@@ -136,16 +149,16 @@ const BookingForm = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn-primary w-full">
+        <button
+          type="submit"
+          className="w-full h-14 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg shadow-xl transition transform hover:scale-[1.02]"
+        >
           Search Available Cars
         </button>
       </form>
 
-      <div className="mt-6 pt-6 border-t border-gray-200">
-        <p className="text-sm text-gray-600 text-center">
-          🎉 <strong>Special Offer:</strong> Get 20% off on bookings over 7 days!
-        </p>
-      </div>
+      {/* Offer Banner */}
+      
     </div>
   );
 };

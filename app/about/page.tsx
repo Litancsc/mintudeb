@@ -4,9 +4,9 @@ import { generateMetadata as genMeta } from '@/lib/seo';
 import { FaAward, FaUsers, FaShieldAlt, FaHeart } from 'react-icons/fa';
 
 export const metadata = genMeta({
-  title: 'About Us - Rupali Travel Rentals',
-  description: 'Learn about Rupali Travel Rentals, your trusted partner for premium car rentals. Committed to excellence, safety, and customer satisfaction since 2010.',
-  keywords: ['about Rupali Travel', 'car rental ', 'our story', 'why choose us'],
+  title: 'About Us - Cloudhills Rentals',
+  description: 'Learn about Cloudhills Rentals, your trusted partner for premium car rentals. Committed to excellence, safety, and customer satisfaction since 2010.',
+  keywords: ['about Cloudhills', 'car rental ', 'our story', 'why choose us'],
 });
 
 export default function AboutPage() {
@@ -17,7 +17,7 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-primary to-primary-light text-white py-20">
           <div className="container-custom">
-            <h1 className="heading-lg mb-4">About Rupali Travel Rentals</h1>
+            <h1 className="heading-lg mb-4">About Cloudhills Rentals</h1>
             <p className="text-xl text-gray-200 max-w-3xl">
               Your trusted partner for premium car rentals. Excellence, safety, and customer satisfaction since 2010.
             </p>
@@ -31,7 +31,7 @@ export default function AboutPage() {
               <div>
                 <h2 className="heading-md mb-6">Our Story</h2>
                 <p className="text-gray-700 mb-4 leading-relaxed">
-                  Founded in 2010, Rupali Travel Rentals started with a simple mission: to provide high-quality, 
+                  Founded in 2010, Cloudhills Rentals started with a simple mission: to provide high-quality, 
                   affordable car rental services to travelers and locals alike. Over the years, we have grown 
                   from a small fleet of 10 vehicles to a comprehensive collection of over 500 premium cars.
                 </p>
@@ -43,7 +43,7 @@ export default function AboutPage() {
                 <p className="text-gray-700 leading-relaxed">
                   Today, we serve thousands of satisfied customers annually, helping them reach their 
                   destinations comfortably and affordably. Whether you need a car for business, leisure, 
-                  or a special occasion, Rupali Travel Rentals has the perfect vehicle for you.
+                  or a special occasion, Cloudhills Rentals has the perfect vehicle for you.
                 </p>
               </div>
               <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">

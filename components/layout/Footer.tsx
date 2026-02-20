@@ -17,6 +17,7 @@ interface MenuItem {
 }
 
 const Footer = () => {
+   const [siteName, setSiteName] = useState("CloudHills");
   const currentYear = new Date().getFullYear();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
@@ -35,51 +36,110 @@ const Footer = () => {
 
     fetchMenuItems();
   }, []);
+useEffect(() => {
+  const fetchSEO = async () => {
+    try {
+      const res = await fetch('/api/admin/seo-settings');
+      if (!res.ok) return;
 
+      const data = await res.json();
+      if (data?.siteName) {
+        setSiteName(data.siteName);
+      }
+    } catch (err) {
+      console.error("Failed to fetch SEO settings:", err);
+    }
+  };
+
+  fetchSEO();
+}, []);
   return (
-    <footer className="bg-primary text-white">
-      <div className="container-custom py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="bg-gold p-2 rounded-lg">
-                <FaCar className="text-xl text-white" />
-              </div>
-              <span className="text-xl font-bold">
-                Rupali Travel <span className="text-gold">Agency In Shillong</span>
-              </span>
+    <footer className="bg-primary text-white relative overflow-hidden">
+
+      {/* ================= Newsletter Section ================= */}
+      <div className="border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+          
+            <div>
+              <h3 className="text-2xl font-bold mb-4">
+                Stay Updated with {siteName}
+              </h3>
+              <p className="text-white/80 max-w-md">
+                Get exclusive offers, new car updates, and travel deals directly in your inbox.
+              </p>
             </div>
-            <p className="text-gray-300 mb-4">
-              Your trusted partner for premium car rentals. We offer a wide selection of vehicles to meet all your driving needs.
+
+            <div className="lg:justify-self-end w-full max-w-md">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gold"
+                />
+                <button className="px-5 py-2 rounded-lg bg-gold hover:bg-yellow-500 text-white font-medium transition shadow-lg">
+                  Subscribe
+                </button>
+              </div>
+              <p className="text-xs text-white/60 mt-2">
+                No spam. Unsubscribe anytime.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ================= Main Footer ================= */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid lg:grid-cols-4 gap-10">
+
+          {/* ===== Brand Section ===== */}
+          <div>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-12 h-12 bg-gold rounded-xl flex items-center justify-center shadow-lg">
+                <FaCar className="text-white text-xl" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold">
+                  {siteName}
+                </h1>
+                <p className="text-sm text-white/70 -mt-1">
+                  Agency
+                </p>
+              </div>
+            </div>
+
+            <p className="text-white/80 mb-6 leading-relaxed">
+              Your trusted partner for premium car rentals in Shillong.
+              Luxury, comfort, and reliability in every journey.
             </p>
+
+            {/* Social Icons */}
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                <FaFacebook className="text-xl" />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                <FaTwitter className="text-xl" />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                <FaInstagram className="text-xl" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                <FaLinkedin className="text-xl" />
-              </a>
+              {[FaFacebook, FaTwitter, FaInstagram, FaLinkedin].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold/20 hover:text-gold transition-all duration-200"
+                >
+                  <Icon />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links - Dynamic from CMS */}
+          {/* ===== Quick Links (Dynamic CMS) ===== */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-gold">Quick Links</h3>
-            <ul className="space-y-2">
-              {menuItems.slice(0, 6).map(item => (
+            <h4 className="font-semibold mb-5 text-gold">Quick Links</h4>
+            <ul className="space-y-3">
+              {menuItems.slice(0, 6).map((item) => (
                 <li key={item._id}>
                   <Link
                     href={item.href}
                     target={item.openInNewTab ? '_blank' : undefined}
                     rel={item.openInNewTab ? 'noopener noreferrer' : undefined}
-                    className="text-gray-300 hover:text-gold transition-colors"
+                    className="text-white/80 hover:text-gold transition-colors text-sm"
                   >
                     {item.label}
                   </Link>
@@ -88,98 +148,91 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Car Categories */}
+          {/* ===== Car Categories ===== */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-gold">Car Categories</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/cars?type=Economy" className="text-gray-300 hover:text-gold transition-colors">
-                  Economy Cars
-                </Link>
-              </li>
-              <li>
-                <Link href="/cars?type=Luxury" className="text-gray-300 hover:text-gold transition-colors">
-                  Luxury Cars
-                </Link>
-              </li>
-              <li>
-                <Link href="/cars?type=SUV" className="text-gray-300 hover:text-gold transition-colors">
-                  SUVs
-                </Link>
-              </li>
-              <li>
-                <Link href="/cars?type=Sports" className="text-gray-300 hover:text-gold transition-colors">
-                  Sports Cars
-                </Link>
-              </li>
-              <li>
-                <Link href="/cars?type=Electric" className="text-gray-300 hover:text-gold transition-colors">
-                  Electric Cars
-                </Link>
-              </li>
+            <h4 className="font-semibold mb-5 text-gold">Car Categories</h4>
+            <ul className="space-y-3 text-sm">
+              {["Economy", "Luxury", "SUV", "Sports", "Electric"].map((type) => (
+                <li key={type}>
+                  <Link
+                    href={`/cars?type=${type}`}
+                    className="text-white/80 hover:text-gold transition-colors"
+                  >
+                    {type} Cars
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* ===== Contact Info ===== */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-gold">Contact Us</h3>
-            <ul className="space-y-3">
+            <h4 className="font-semibold mb-5 text-gold">Contact Us</h4>
+            <ul className="space-y-4 text-sm">
+
               <li className="flex items-start space-x-3">
-                <FaMapMarkerAlt className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-gray-300">
-                  Milan Compound, Upper Mawprem, Garikhana, Shillong, Meghalaya 793002
+                <FaMapMarkerAlt className="text-gold mt-1" />
+                <span className="text-white/80">
+                 Riti Complex, opposite Municipal Market, Laban, Shillong, Meghalaya 793004, India
+
                 </span>
               </li>
+
               <li className="flex items-center space-x-3">
-                <FaPhone className="text-gold flex-shrink-0" />
-                <a href="tel:+8415038275" className="text-gray-300 hover:text-gold transition-colors">
-                  +91 84150 38275
+                <FaPhone className="text-gold" />
+                <a href="tel:+917085901345" className="text-white/80 hover:text-gold transition">
+                  +91 70859 01345
                 </a>
               </li>
+
               <li className="flex items-center space-x-3">
-                <FaEnvelope className="text-gold flex-shrink-0" />
-                <a href="mailto:rupalitravelagency@gmail.com" className="text-gray-300 hover:text-gold transition-colors">
-                  rupalitravelagency@gmail.com
+                <FaEnvelope className="text-gold" />
+                <a href="mailto:rupalitravelagency@gmail.com" className="text-white/80 hover:text-gold transition">
+                  Litanpaulcsc@gmail.com
                 </a>
               </li>
             </ul>
-            <div className="mt-4">
-              <p className="text-sm text-gray-400">
-                <strong>Hours:</strong><br />
-                Mon-Fri: 8:00 AM - 8:00 PM<br />
-                Sat-Sun: 9:00 AM - 6:00 PM
-              </p>
+
+            <p className="text-xs text-white/60 mt-4">
+              Mon-Fri: 8AM - 8PM <br />
+              Sat-Sun: 9AM - 6PM
+            </p>
+          </div>
+
+        </div>
+
+        {/* ===== Bottom Bar ===== */}
+        <div className="mt-16 pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
+            <div>
+              © {currentYear} {siteName}. All rights reserved.
+            </div>
+
+            <div className="flex items-center space-x-6">
+              <Link href="/privacy-policy" className="hover:text-gold transition">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-of-service" className="hover:text-gold transition">
+                Terms of Service
+              </Link>
             </div>
           </div>
         </div>
-
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
-            &copy; {currentYear} Rupali Travel Agency In Shillong. All rights reserved.{' '}
-            <Link href="/privacy-policy" className="hover:text-gold transition-colors">
-              Privacy Policy
-            </Link>{' '}
-            |{' '}
-            <Link href="/terms-of-service" className="hover:text-gold transition-colors">
-              Terms of Service
-            </Link>
-          </p>
-        </div>
       </div>
-        {/* WhatsApp Floating Button */}
+
+      {/* ================= WhatsApp Floating Button ================= */}
       <a
         href="https://wa.me/918415038275"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50"
+        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-xl flex items-center justify-center z-50 transition"
       >
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12.04 2C6.48 2 2 6.5 2 12.04c0 2.13.56 4.11 1.54 5.84L2 22l4.31-1.42a9.957 9.957 0 005.73 1.65C17.56 22.23 22 17.76 22 12.04 22 6.48 17.52 2 12.04 2zm0 18.05a8.014 8.014 0 01-4.36-1.27l-.31-.19-2.57.84.88-2.5-.21-.34A7.98 7.98 0 014.05 12c0-4.42 3.59-8.02 8-8.02 4.41 0 8 3.6 8 8.02 0 4.41-3.6 8-8 8zm3.71-5.89l-.44-2.09c-.06-.27-.31-.49-.59-.49l-1.66.03c-.28 0-.53.21-.58.49l-.22 1.25c-.06.34-.36.63-.7.72l-1.38.37c-.35.09-.57.45-.5.8l.28 1.31c.07.35.37.61.73.61h.01c3.05 0 5.53-2.48 5.53-5.53 0-.31-.25-.56-.56-.56z"/>
+          <path d="M12.04 2C6.48 2 2 6.5 2 12.04c0 2.13.56 4.11 1.54 5.84L2 22l4.31-1.42a9.957 9.957 0 005.73 1.65C17.56 22.23 22 17.76 22 12.04 22 6.48 17.52 2 12.04 2z" />
         </svg>
       </a>
 
     </footer>
   );
 };
-
 export default Footer;
