@@ -41,16 +41,14 @@ const Hero = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Discover the Beauty of North East{' '}
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-6">
+            Discover the Beauty of Northeast India with Our Car Rental, Driver Services & Tour Packages.{' '}
             <span className="text-yellow-400">Drive</span> with Us
           </h1>
 
           {/* Description */}
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl">
-            Premium car rentals at affordable prices in Shillong & Guwahati.
-            Choose from our wide selection of vehicles.
-          </p>
+Premium Rides. Trusted Drivers. Exceptional Service — Across Northeast India.          </p>
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 mb-10">

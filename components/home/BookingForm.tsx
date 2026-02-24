@@ -58,7 +58,7 @@ const BookingForm = () => {
         </div>
 
         <a
-          href={`https://api.whatsapp.com/send?phone=8415038275&text=${encodeURIComponent(
+          href={`https://api.whatsapp.com/send?phone=7085901345&text=${encodeURIComponent(
             `Hi, I'm interested in renting a car. Is it available?`
           )}`}
           target="_blank"

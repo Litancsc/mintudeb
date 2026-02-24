@@ -31,7 +31,7 @@ async function getPage(service: string, location: string) {
   // Replace this with your real database fetching logic
   // For now we mock the page data
   return {
-    title: `${service} in ${location}`,
+    title: `Car Rental in ${service} & ${location} Northeast Tours | CloudHills`,
     excerpt: `Looking for reliable ${service.toLowerCase()} in ${location}? Cloudhills offers safe, affordable car rental with driver.`,
     content: `<section class="space-y-6">
       <p>Looking for a reliable <strong>${service.toLowerCase()} in ${location} with driver</strong>?<br/>

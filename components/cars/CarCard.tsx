@@ -21,7 +21,7 @@ interface CarCardProps {
 
 
 const CarCard = ({ car }: CarCardProps) => {
-   const whatsappNumber = '8415038275';
+   const whatsappNumber = '7085901345';
   const whatsappMessage = `I want to book the ${car.name}`;
   const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(whatsappMessage)}`;
   return (

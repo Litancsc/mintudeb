@@ -33,13 +33,13 @@ const SEOSettings = () => {
     setLoading(true);
     try {
       const res = await fetch('/api/admin/seo-settings');
-      
+
       if (!res.ok) {
         throw new Error(`Failed to load settings: ${res.status}`);
       }
 
       const data = await res.json();
-      
+
       // FIXED: Ensure all fields are properly set
       setSettings({
         siteName: data.siteName || '',
@@ -88,11 +88,11 @@ const SEOSettings = () => {
   // FIXED: Improved save handler with proper error handling
   const handleSaveSettings = async () => {
     setSaving(true);
-    
+
     try {
       const res = await fetch('/api/admin/seo-settings', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(settings),
@@ -104,7 +104,7 @@ const SEOSettings = () => {
       }
 
       const savedData = await res.json();
-      
+
       // FIXED: Update state with saved data to ensure sync
       setSettings({
         siteName: savedData.siteName || '',
@@ -118,7 +118,7 @@ const SEOSettings = () => {
       });
 
       toast.success('SEO settings saved successfully!');
-    } catch  {
+    } catch {
       const message = 'Failed to save settings';
       toast(message);
     } finally {
@@ -126,40 +126,40 @@ const SEOSettings = () => {
     }
   };
   // Add this function in your SEOSettings component
-const handleForceRefresh = async () => {
-  try {
-    const res = await fetch('/api/admin/revalidate', {
-      method: 'POST',
-    });
-    
-    if (res.ok) {
-      toast.success('✅ Metadata refreshed! Reloading page...');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    } else {
-      toast.error('Failed to refresh metadata');
-    }
-  } catch {
-    toast.error('Error refreshing metadata');
-  }
-};
+  const handleForceRefresh = async () => {
+    try {
+      const res = await fetch('/api/admin/revalidate', {
+        method: 'POST',
+      });
 
-// Add this in your Analytics tab after the save button:
-<div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-  <h4 className="font-semibold text-yellow-800 mb-2">
-    Changes not showing up?
-  </h4>
-  <p className="text-sm text-yellow-700 mb-3">
-    After saving your Google Search Console verification code, click below to force refresh the metadata.
-  </p>
-  <button
-    onClick={handleForceRefresh}
-    className="btn-outline text-sm"
-  >
-    🔄 Force Refresh Metadata
-  </button>
-</div>
+      if (res.ok) {
+        toast.success('✅ Metadata refreshed! Reloading page...');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        toast.error('Failed to refresh metadata');
+      }
+    } catch {
+      toast.error('Error refreshing metadata');
+    }
+  };
+
+  // Add this in your Analytics tab after the save button:
+  <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+    <h4 className="font-semibold text-yellow-800 mb-2">
+      Changes not showing up?
+    </h4>
+    <p className="text-sm text-yellow-700 mb-3">
+      After saving your Google Search Console verification code, click below to force refresh the metadata.
+    </p>
+    <button
+      onClick={handleForceRefresh}
+      className="btn-outline text-sm"
+    >
+      🔄 Force Refresh Metadata
+    </button>
+  </div>
 
   const handleGenerateSitemap = async () => {
     try {
@@ -170,7 +170,7 @@ const handleForceRefresh = async () => {
       } else {
         toast.error('Failed to generate sitemap');
       }
-    } catch  {
+    } catch {
       toast('Error generating sitemap');
     }
   };
@@ -206,11 +206,10 @@ const handleForceRefresh = async () => {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center space-x-2 px-6 py-4 font-medium border-b-2 transition-colors whitespace-nowrap ${
-                        activeTab === tab.id
-                          ? 'border-gold text-gold'
-                          : 'border-transparent text-gray-600 hover:text-gold'
-                      }`}
+                      className={`flex items-center space-x-2 px-6 py-4 font-medium border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.id
+                        ? 'border-gold text-gold'
+                        : 'border-transparent text-gray-600 hover:text-gold'
+                        }`}
                     >
                       <Icon />
                       <span>{tab.label}</span>
@@ -292,8 +291,8 @@ const handleForceRefresh = async () => {
                     />
                   </div>
 
-                  <button 
-                    onClick={handleSaveSettings} 
+                  <button
+                    onClick={handleSaveSettings}
                     className="btn-primary"
                     disabled={saving}
                   >
@@ -338,9 +337,8 @@ const handleForceRefresh = async () => {
                       <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                         <span className="font-medium">Status:</span>
                         <span
-                          className={`badge ${
-                            sitemapStatus === 'success' ? 'badge-success' : 'badge-warning'
-                          }`}
+                          className={`badge ${sitemapStatus === 'success' ? 'badge-success' : 'badge-warning'
+                            }`}
                         >
                           {sitemapStatus === 'success' ? 'Active' : 'Checking...'}
                         </span>
@@ -444,9 +442,8 @@ const handleForceRefresh = async () => {
                       <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                         <span className="font-medium">Status:</span>
                         <span
-                          className={`badge ${
-                            robotsStatus === 'success' ? 'badge-success' : 'badge-warning'
-                          }`}
+                          className={`badge ${robotsStatus === 'success' ? 'badge-success' : 'badge-warning'
+                            }`}
                         >
                           {robotsStatus === 'success' ? 'Active' : 'Checking...'}
                         </span>
@@ -468,7 +465,7 @@ const handleForceRefresh = async () => {
                   <div className="bg-white rounded-lg p-6 border border-gray-200">
                     <h4 className="font-semibold text-primary mb-3">Current Configuration</h4>
                     <pre className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm">
-{`# DriveNow Rentals - Robots.txt
+                      {`# DriveNow Rentals - Robots.txt
 User-agent: *
 Allow: /
 
@@ -557,8 +554,8 @@ Sitemap: ${typeof window !== 'undefined' ? window.location.origin : ''}/api/site
                     </p>
                   </div>
 
-                  <button 
-                    onClick={handleSaveSettings} 
+                  <button
+                    onClick={handleSaveSettings}
                     className="btn-primary"
                     disabled={saving}
                   >
@@ -646,12 +643,12 @@ Sitemap: ${typeof window !== 'undefined' ? window.location.origin : ''}/api/site
               </div>
             </div>
           </div>
-          
+
         </>
       )}
     </div>
-    
+
   );
 };
-export default SEOSettings; 
+export default SEOSettings;
 

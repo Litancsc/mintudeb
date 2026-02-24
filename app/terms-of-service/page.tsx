@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
       <h2 className="text-xl font-semibold mt-8 mb-2">Limitation of Liability</h2>
       <p className="mb-4">We are not liable for any indirect or consequential damages arising from your use of our services.</p>
       <h2 className="text-xl font-semibold mt-8 mb-2">Contact</h2>
-      <p>If you have questions about these Terms of Service, please contact us at info@drivenow.com.</p>
+      <p>If you have questions about these Terms of Service, please contact us at Litanpaulcsc@gmail.com.</p>
     </div>
     <Footer />
     </>

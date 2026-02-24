@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
       <h2 className="text-xl font-semibold mt-8 mb-2">Data Protection</h2>
       <p className="mb-4">We implement security measures to protect your data. We do not sell or share your personal information except as required by law.</p>
       <h2 className="text-xl font-semibold mt-8 mb-2">Contact</h2>
-      <p>If you have questions about this Privacy Policy, please contact us at info@drivenow.com.</p>
+      <p>If you have questions about this Privacy Policy, please contact us at Litanpaulcsc@gmail.com.</p>
     </div>
     <Footer />
     </>

@@ -38,9 +38,9 @@ const Features = () => {
     <section className="section-padding bg-gray-50">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <h2 className="heading-lg mb-4">Why Choose Rupali Travel ?</h2>
+          <h2 className="heading-lg mb-4">Why Choose cloudhills Travel ?</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            We provide exceptional car rental services with a focus on customer satisfaction and quality.
+            We offer trusted car rental services with professional drivers, well-maintained vehicles, and a commitment to 100% customer satisfaction. Travel comfortably and confidently with us.
           </p>
         </div>
 

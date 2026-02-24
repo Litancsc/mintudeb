@@ -111,8 +111,7 @@ useEffect(() => {
             </div>
 
             <p className="text-white/80 mb-6 leading-relaxed">
-              Your trusted partner for premium car rentals in Shillong.
-              Luxury, comfort, and reliability in every journey.
+              Trusted premium car rental services in Shillong offering luxury vehicles, comfortable rides, and reliable drivers for tours, airport transfers, and Northeast travel.
             </p>
 
             {/* Social Icons */}
@@ -173,11 +172,30 @@ useEffect(() => {
               <li className="flex items-start space-x-3">
                 <FaMapMarkerAlt className="text-gold mt-1" />
                 <span className="text-white/80">
+                 South Anandanagar, Near Master Chowmahani, Srinagar, Agartala, Tripura(W) 799004, India
+
+                </span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <FaMapMarkerAlt className="text-gold mt-1" />
+                <span className="text-white/80">
                  Riti Complex, opposite Municipal Market, Laban, Shillong, Meghalaya 793004, India
 
                 </span>
               </li>
+               <li className="flex items-start space-x-3">
+                <FaMapMarkerAlt className="text-gold mt-1" />
+                <span className="text-white/80">
+                 Nazirakhat, Sonapur, Guwahati, Assam - 782402, India
 
+                </span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <FaPhone className="text-gold" />
+                <a href="tel:+919612011797" className="text-white/80 hover:text-gold transition">
+                  +91 9612011797
+                </a>
+              </li>
               <li className="flex items-center space-x-3">
                 <FaPhone className="text-gold" />
                 <a href="tel:+917085901345" className="text-white/80 hover:text-gold transition">
@@ -187,7 +205,7 @@ useEffect(() => {
 
               <li className="flex items-center space-x-3">
                 <FaEnvelope className="text-gold" />
-                <a href="mailto:rupalitravelagency@gmail.com" className="text-white/80 hover:text-gold transition">
+                <a href="mailto:litanpaulcsc@gmail.com" className="text-white/80 hover:text-gold transition">
                   Litanpaulcsc@gmail.com
                 </a>
               </li>
@@ -222,7 +240,7 @@ useEffect(() => {
 
       {/* ================= WhatsApp Floating Button ================= */}
       <a
-        href="https://wa.me/918415038275"
+        href="https://wa.me/917085901345"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-xl flex items-center justify-center z-50 transition"

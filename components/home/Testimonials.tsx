@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaStar, FaChevronLeft, FaChevronRight, FaQuoteLeft, FaGoogle } from 'react-icons/fa';
 
 const GOOGLE_REVIEW_URL =
-  'https://www.google.com/search?sca_esv=6da2c71a879288c4&rlz=1C1CHBF_enIN1139IN1139&cs=0&output=search&kgmid=/g/11l6ddhfms&q=Miles+For+Smiles+Tours+%26+Travels&shndl=30&source=sh/x/kp/local/m1/1&kgs=302b4011490c25f3&shem=shrtsdl&utm_source=shrtsdl,sh/x/kp/local/m1/1#lrd=0x37507f39f3e7baa5:0x7ae92a23ca682b56,1,,,,';
+  'https://g.page/r/CSLynX1VkNIREAE/review';
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

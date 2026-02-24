@@ -38,7 +38,7 @@ const BookingSection = ({ car }: { car: Car }) => {
      WhatsApp Redirect
   ========================== */
   const redirectToWhatsApp = (bookingId: string) => {
-    const phone = '918415038275';
+    const phone = '917085901345';
 
     const text = `
 New Booking Request 🚗
